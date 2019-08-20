@@ -1,6 +1,6 @@
 # create-index-better
 
-[![NPM version](http://img.shields.io/npm/v/create-index.svg?style=flat-square)](https://www.npmjs.org/package/create-index-better)
+![npm](https://img.shields.io/npm/v/create-index-better?style=flat-square)
 
 `create-index-better` program creates (and maintains) ES6 `./index.js` file in target directories that imports and exports sibling files and directories.
 
