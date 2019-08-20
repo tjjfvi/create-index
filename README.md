@@ -36,10 +36,8 @@ This created `index.js` with:
 
 export { default as bar } from './bar.js';
 export * from './bar.js';
-export type * from './bar.js';
 export { default as foo } from './foo.js';
 export * from './foo.js';
-export type * from './foo.js';
 
 ```
 
@@ -70,13 +68,10 @@ This have updated `index.js` file:
 
 export { default as bar } from './bar.js';
 export * from './bar.js';
-export type * from './bar.js';
 export { default as baz } from './baz.js';
 export * from './baz.js';
-export type * from './baz.js';
 export { default as foo } from './foo.js';
 export * from './foo.js';
-export type * from './foo.js';
 
 ```
 
@@ -151,10 +146,8 @@ Given the above directory contents, `./index.js` will be:
 
 export { default as bar } from './bar';
 export * from './bar';
-export type * from './bar';
 export { default as foo } from './foo.js';
 export * from './foo.js';
-export type * from './foo.js';
 ```
 
 When file has the same name as a sibling directory, file `import` takes precedence.
@@ -192,11 +185,8 @@ Given the above directory contents, after running `create-index` with `--update`
 
 export { default as bar } from './bar.js';
 export * from './bar.js';
-export type * from './bar.js';
 export { default as baz } from './baz.js';
 export * from './baz.js';
-export type * from './baz.js';
 export { default as foo } from './foo.js';
 export * from './foo.js';
-export type * from './foo.js';
 ```

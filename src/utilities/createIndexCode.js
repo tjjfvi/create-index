@@ -17,10 +17,9 @@ const buildExportBlock = (files) => {
     return `
       export { default as ${safeVariableName(fileName)} } from './${fileName}';
       export * from './${fileName}';
-      export type * from './${fileName}';
-    `.trim().split('\n').map((line) => {
-      return line.trim();
-    }).join('\n');
+          `.trim().split('\n').map((line) => {
+            return line.trim();
+          }).join('\n');
   });
 
   importBlock = importBlock.join('\n');

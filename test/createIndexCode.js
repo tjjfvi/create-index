@@ -22,7 +22,6 @@ describe('createIndexCode()', () => {
 
 export { default as foo } from './foo';
 export * from './foo';
-export type * from './foo';
     `));
   });
   it('describes multiple children', () => {
@@ -33,10 +32,8 @@ export type * from './foo';
 
 export { default as bar } from './bar';
 export * from './bar';
-export type * from './bar';
 export { default as foo } from './foo';
 export * from './foo';
-export type * from './foo';
     `));
   });
   context('file with extension', () => {
@@ -48,7 +45,6 @@ export type * from './foo';
 
 export { default as foo } from './foo.js';
 export * from './foo.js';
-export type * from './foo.js';
       `));
     });
   });
@@ -61,10 +57,8 @@ export type * from './foo.js';
 
 export { default as bar } from './bar';
 export * from './bar';
-export type * from './bar';
 export { default as foo } from './foo';
 export * from './foo';
-export type * from './foo';
       `));
     });
   });
@@ -81,10 +75,8 @@ export type * from './foo';
 
 export { default as bar } from './bar';
 export * from './bar';
-export type * from './bar';
 export { default as foo } from './foo';
 export * from './foo';
-export type * from './foo';
       `));
     });
   });
