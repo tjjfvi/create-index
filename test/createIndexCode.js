@@ -21,6 +21,8 @@ describe('createIndexCode()', () => {
 // @create-index
 
 export { default as foo } from './foo';
+export * from './foo';
+export type * from './foo';
     `));
   });
   it('describes multiple children', () => {
@@ -30,7 +32,11 @@ export { default as foo } from './foo';
 // @create-index
 
 export { default as bar } from './bar';
+export * from './bar';
+export type * from './bar';
 export { default as foo } from './foo';
+export * from './foo';
+export type * from './foo';
     `));
   });
   context('file with extension', () => {
@@ -41,6 +47,8 @@ export { default as foo } from './foo';
 // @create-index
 
 export { default as foo } from './foo.js';
+export * from './foo.js';
+export type * from './foo.js';
       `));
     });
   });
@@ -52,7 +60,11 @@ export { default as foo } from './foo.js';
 // @create-index
 
 export { default as bar } from './bar';
+export * from './bar';
+export type * from './bar';
 export { default as foo } from './foo';
+export * from './foo';
+export type * from './foo';
       `));
     });
   });
@@ -68,7 +80,11 @@ export { default as foo } from './foo';
 // @create-index {"ignore":["/^zoo/"]}
 
 export { default as bar } from './bar';
+export * from './bar';
+export type * from './bar';
 export { default as foo } from './foo';
+export * from './foo';
+export type * from './foo';
       `));
     });
   });

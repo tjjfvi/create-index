@@ -1,3 +1,7 @@
 {
-  "extends": "canonical"
+  "extends": "canonical",
+  "rules": {
+    "no-restricted-syntax": ["off"],
+    "import/max-dependencies": ["off"]
+  }
 }
