@@ -22,11 +22,11 @@ const buildExportBlock = (files) => {
   return importBlock;
 };
 
-export default (filePaths, options = {}) => {
+export default (filePaths, options = {}, initCode = '') => {
   let code;
   let configCode;
 
-  code = '';
+  code = initCode;
   configCode = '';
 
   if (options.banner) {

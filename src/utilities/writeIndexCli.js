@@ -9,6 +9,7 @@ import readIndexConfig from './readIndexConfig';
 import sortByDepth from './sortByDepth';
 import log from './log';
 import findIndexFiles from './findIndexFiles';
+import {CREATE_INDEX_PATTERN} from './constants';
 
 export default (directoryPaths, options = {}) => {
   let sortedDirectoryPaths;
@@ -54,22 +55,20 @@ export default (directoryPaths, options = {}) => {
       silent: options.ignoreUnsafe
     });
 
-    const indexCode = createIndexCode(siblings, {
-      banner: options.banner,
-      config
-    });
-
     const indexFilePath = path.resolve(directoryPath, 'index.js');
 
     try {
       existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');
-
-        /* eslint-disable no-empty */
     } catch (error) {
-
+      existingIndexCode = '';
     }
 
-        /* eslint-enable no-empty */
+    const initCode = existingIndexCode.split(CREATE_INDEX_PATTERN)[0] || '';
+
+    const indexCode = createIndexCode(siblings, {
+      banner: options.banner,
+      config
+    }, initCode);
 
     fs.writeFileSync(indexFilePath, indexCode);
 
