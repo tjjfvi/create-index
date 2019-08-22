@@ -31,8 +31,8 @@ export * from './foo';
 // @create-index
 
 export { default as bar } from './bar';
-export * from './bar';
 export { default as foo } from './foo';
+export * from './bar';
 export * from './foo';
     `));
   });
@@ -56,8 +56,8 @@ export * from './foo.js';
 // @create-index
 
 export { default as bar } from './bar';
-export * from './bar';
 export { default as foo } from './foo';
+export * from './bar';
 export * from './foo';
       `));
     });
@@ -74,8 +74,8 @@ export * from './foo';
 // @create-index {"ignore":["/^zoo/"]}
 
 export { default as bar } from './bar';
-export * from './bar';
 export { default as foo } from './foo';
+export * from './bar';
 export * from './foo';
       `));
     });

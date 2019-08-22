@@ -2,6 +2,8 @@
   "extends": "canonical",
   "rules": {
     "no-restricted-syntax": ["off"],
-    "import/max-dependencies": ["off"]
+    "import/max-dependencies": ["off"],
+    "id-length": ["off"],
+    "arrow-body-style": ["off"]
   }
 }

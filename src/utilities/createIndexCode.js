@@ -11,20 +11,16 @@ const safeVariableName = (fileName) => {
 };
 
 const buildExportBlock = (files) => {
-  let importBlock;
-
-  importBlock = _.map(files, (fileName) => {
+  return files.map((fileName) => {
     return `
       export { default as ${safeVariableName(fileName)} } from './${fileName}';
       export * from './${fileName}';
-          `.trim().split('\n').map((line) => {
-            return line.trim();
-          }).join('\n');
-  });
-
-  importBlock = importBlock.join('\n');
-
-  return importBlock;
+    `.trim().split('\n').map((line) => {
+      return line.trim();
+    });
+  }).reduce((a, b) => {
+    return a.map((x, i) => x + '\n' + b[i]);
+  }, ['', '']).join('').slice(1);
 };
 
 export default (filePaths, options = {}, initCode = '') => {
