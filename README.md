@@ -115,6 +115,55 @@ Examples:
                                           .jsx extensions.
 ```
 
+### Using `create-index` Programmatically
+
+```js
+import {
+    writeIndex
+} from 'create-index';
+
+/**
+ * @type {Function}
+ * @param {Array<string>} directoryPaths
+ * @throws {Error} Directory "..." does not exist.
+ * @throws {Error} "..." is not a directory.
+ * @throws {Error} "..." unsafe index.
+ * @returns {boolean}
+ */
+writeIndex;
+```
+
+Note that the `writeIndex` function is synchronous.
+
+```js
+import {
+    findIndexFiles
+} from 'create-index';
+
+/**
+ * @type {Function}
+ * @param {string} directoryPath
+ * @returns {Array<string>} List of directory paths that have create-index index file.
+ */
+findIndexFiles;
+```
+
+### Gulp
+
+Since [Gulp](http://gulpjs.com/) can ran arbitrary JavaScript code, there is no need for a separate plugin. See [Using `create-index` Programmatically](#using-create-index-programmatically).
+
+```js
+import {
+    writeIndex
+} from 'create-index';
+
+gulp.task('create-index', () => {
+    writeIndex(['./target_directory']);
+});
+```
+
+Note that the `writeIndex` function is synchronous.
+
 ## Implementation
 
 `create-index` program will look into the target directory.
