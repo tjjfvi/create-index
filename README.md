@@ -239,3 +239,42 @@ export * from './bar.js';
 export * from './baz.js';
 export * from './foo.js';
 ```
+
+## Modes
+
+`create-index` has multiple modes:
+
+`default,*` (default)
+```js
+// @create-index {"mode":"default,*"}
+
+export { default as foo } from './foo.js';
+export { default as bar } from './bar.js';
+export * from './foo.js';
+export * from './bar.js';
+```
+
+`*`
+```js
+// @create-index {"mode":"*"}
+
+export * from './foo.js';
+export * from './bar.js';
+```
+
+`default`
+```js
+// @create-index {"mode":"default,*"}
+
+export { default as foo } from './foo.js';
+export { default as bar } from './bar.js';
+```
+
+`named*`
+```js
+// @create-index {"mode":"default,*"}
+
+import * as foo from './foo.js';
+import * as bar from './bar.js';
+export { foo, bar };
+```
