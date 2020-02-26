@@ -79,5 +79,48 @@ export * from './bar';
 export * from './foo';
       `));
     });
+
+    it('should use mode named*', () => {
+      const config = {
+        mode: 'named*'
+      };
+      const indexCode = createIndexCode(['foo', 'bar'], {config});
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index {"mode":"named*"}
+
+import * as bar from './bar';
+import * as foo from './foo';
+export { bar, foo };
+      `));
+    });
+
+    it('should use mode *', () => {
+      const config = {
+        mode: '*'
+      };
+      const indexCode = createIndexCode(['foo', 'bar'], {config});
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index {"mode":"*"}
+
+export * from './bar';
+export * from './foo';
+      `));
+    });
+
+    it('should use mode default', () => {
+      const config = {
+        mode: 'default'
+      };
+      const indexCode = createIndexCode(['foo', 'bar'], {config});
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index {"mode":"default"}
+
+export { default as bar } from './bar';
+export { default as foo } from './foo';
+      `));
+    });
   });
 });

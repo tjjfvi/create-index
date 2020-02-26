@@ -10,17 +10,30 @@ const safeVariableName = (fileName) => {
   }
 };
 
-const buildExportBlock = (files) => {
-  return files.map((fileName) => {
-    return `
+const buildExportBlock = (files, config = {}) => {
+  const {mode = 'default,*'} = config;
+
+  if (config.mode === 'default') {
+    return files.map((fileName) => `export { default as ${safeVariableName(fileName)} } from './${fileName}';`).join('\n');
+  } else if (mode === '*') {
+    return files.map((fileName) => `export * from './${fileName}';`).join('\n');
+  } else if (mode === 'named*') {
+    return files.map((fileName) => `import * as ${safeVariableName(fileName)} from './${fileName}';`).join('\n') +
+    `\nexport { ${files.map(safeVariableName).join(', ')} };`;
+  } else if (mode === 'default,*') {
+    return files.map((fileName) => {
+      return `
       export { default as ${safeVariableName(fileName)} } from './${fileName}';
       export * from './${fileName}';
     `.trim().split('\n').map((line) => {
       return line.trim();
     });
-  }).reduce((a, b) => {
-    return a.map((x, i) => x + '\n' + b[i]);
-  }, ['', '']).join('').slice(1);
+    }).reduce((a, b) => {
+      return a.map((x, i) => x + '\n' + b[i]);
+    }, ['', '']).join('').slice(1);
+  }
+
+  throw new Error(`Invalid mode '${mode}'`);
 };
 
 export default (filePaths, options = {}, initCode = '') => {
@@ -49,7 +62,7 @@ export default (filePaths, options = {}, initCode = '') => {
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
 
-    code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildExportBlock(sortedFilePaths, options.config) + '\n\n';
   }
 
   return code;
