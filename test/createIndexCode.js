@@ -122,5 +122,20 @@ export { default as bar } from './bar';
 export { default as foo } from './foo';
       `));
     });
+
+    it('should use mode default{}', () => {
+      const config = {
+        mode: 'default{}'
+      };
+      const indexCode = createIndexCode(['foo', 'bar'], {config});
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index {"mode":"default{}"}
+
+import bar from './bar';
+import foo from './foo';
+export default { bar, foo };
+      `));
+    });
   });
 });

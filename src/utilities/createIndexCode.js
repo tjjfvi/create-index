@@ -32,6 +32,9 @@ const buildExportBlock = (files, config = {}) => {
     }).reduce((a, b) => {
       return a.map((x, i) => x + '\n' + b[i]);
     }, ['', '']).join('').slice(1);
+  } else if (mode === 'default{}') {
+    return files.map((fileName) => `import ${safeVariableName(fileName)} from './${fileName}';`).join('\n') +
+    `\nexport default { ${files.map(safeVariableName).join(', ')} };`;
   }
 
   throw new Error(`Invalid mode '${mode}'`);

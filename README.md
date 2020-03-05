@@ -264,7 +264,7 @@ export * from './bar.js';
 
 `default`
 ```js
-// @create-index {"mode":"default,*"}
+// @create-index {"mode":"default"}
 
 export { default as foo } from './foo.js';
 export { default as bar } from './bar.js';
@@ -272,9 +272,18 @@ export { default as bar } from './bar.js';
 
 `named*`
 ```js
-// @create-index {"mode":"default,*"}
+// @create-index {"mode":"named*"}
 
 import * as foo from './foo.js';
 import * as bar from './bar.js';
 export { foo, bar };
+```
+
+`default{}`
+```js
+// @create-index {"mode":"default{}"}
+
+import foo from './foo.js';
+import bar from './bar.js';
+export default { foo, bar };
 ```
