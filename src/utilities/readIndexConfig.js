@@ -3,12 +3,12 @@ import path from 'path';
 import hasIndex from './hasIndex';
 import {CREATE_INDEX_PATTERN} from './constants';
 
-export default (directoryPath) => {
-  if (!hasIndex(directoryPath)) {
+export default (directoryPath, ext = 'js') => {
+  if (!hasIndex(directoryPath, ext)) {
     return {};
   }
 
-  const indexPath = path.resolve(directoryPath, 'index.js');
+  const indexPath = path.resolve(directoryPath, 'index.' + ext);
   const indexContents = fs.readFileSync(indexPath, 'utf-8');
   const found = indexContents.match(CREATE_INDEX_PATTERN);
   const configLine = typeof found[1] === 'string' ? found[1].trim() : '';

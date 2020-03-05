@@ -1,3 +1,4 @@
+import path from 'path';
 import _ from 'lodash';
 
 const safeVariableName = (fileName) => {
@@ -60,7 +61,13 @@ export default (filePaths, options = {}, initCode = '') => {
   code += '// @create-index' + configCode + '\n\n';
 
   if (filePaths.length) {
-    const sortedFilePaths = filePaths.sort();
+    let sortedFilePaths;
+
+    sortedFilePaths = filePaths.sort();
+
+    if (options.stripExtension) {
+      sortedFilePaths = sortedFilePaths.map((x) => x.slice(0, -path.extname(x).length || Infinity));
+    }
 
     code += buildExportBlock(sortedFilePaths, options.config) + '\n\n';
   }

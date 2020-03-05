@@ -6,7 +6,7 @@ import validateTargetDirectory from './validateTargetDirectory';
 export default (directoryPath, options = {}) => {
   let fileName, targetDirectories;
 
-  fileName = options.fileName || 'index.js';
+  fileName = options.fileName || 'index.' + (options.ext || '.js');
   fileName = './**/' + fileName;
 
   targetDirectories = glob.sync(path.join(directoryPath, fileName));

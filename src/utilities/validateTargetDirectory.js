@@ -24,7 +24,7 @@ export default (targetDirectory, options = {}) => {
     }
   }
 
-  const indexFilePath = path.resolve(targetDirectory, './index.js');
+  const indexFilePath = path.resolve(targetDirectory, './index.' + (options.ext || 'js'));
 
   try {
     fs.statSync(indexFilePath);

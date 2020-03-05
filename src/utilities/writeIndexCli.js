@@ -12,6 +12,7 @@ import findIndexFiles from './findIndexFiles';
 import {CREATE_INDEX_PATTERN} from './constants';
 
 export default (directoryPaths, options = {}) => {
+  const ext = options.indexExtension || 'js';
   let sortedDirectoryPaths;
 
   sortedDirectoryPaths = sortByDepth(directoryPaths);
@@ -28,7 +29,8 @@ export default (directoryPaths, options = {}) => {
   if (options.updateIndex || options.recursive) {
     sortedDirectoryPaths = _.map(sortedDirectoryPaths, (dir) => {
       return findIndexFiles(dir, {
-        fileName: options.updateIndex ? 'index.js' : '*',
+        ext: options.ext,
+        fileName: options.updateIndex ? 'index.' + ext : '*',
         silent: options.updateIndex || options.ignoreUnsafe
       });
     });
@@ -40,22 +42,26 @@ export default (directoryPaths, options = {}) => {
   }
 
   sortedDirectoryPaths = sortedDirectoryPaths.filter((directoryPath) => {
-    return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe});
+    return validateTargetDirectory(directoryPath, {
+      ext,
+      silent: options.ignoreUnsafe
+    });
   });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
-    const config = readIndexConfig(directoryPath);
+    const config = readIndexConfig(directoryPath, ext);
 
     const siblings = readDirectory(directoryPath, {
       config,
+      ext,
       extensions: options.extensions,
       ignoreDirectories: options.ignoreDirectories,
       silent: options.ignoreUnsafe
     });
 
-    const indexFilePath = path.resolve(directoryPath, 'index.js');
+    const indexFilePath = path.resolve(directoryPath, 'index.' + ext);
 
     try {
       existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');
@@ -67,7 +73,8 @@ export default (directoryPaths, options = {}) => {
 
     const indexCode = createIndexCode(siblings, {
       banner: options.banner,
-      config
+      config,
+      stripExtension: options.stripExtension
     }, initCode);
 
     fs.writeFileSync(indexFilePath, indexCode);

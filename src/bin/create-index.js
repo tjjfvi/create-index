@@ -46,6 +46,22 @@ const argv = yargs
     }
   })
   .options({
+    stripExtension: {
+      alias: 'S',
+      default: false,
+      description: 'Strip the extension when importing',
+      type: 'boolean'
+    }
+  })
+  .options({
+    indexExtension: {
+      alias: 'X',
+      default: 'js',
+      description: 'The extension to use for the index file',
+      type: 'string'
+    }
+  })
+  .options({
     extensions: {
       alias: 'x',
       default: ['js'],
@@ -72,6 +88,8 @@ writeIndexCli(argv._, {
   extensions: argv.extensions,
   ignoreDirectories: argv.ignoreDirectories,
   ignoreUnsafe: argv.ignoreUnsafe,
+  indexExtension: argv.indexExtension,
   recursive: argv.recursive,
+  stripExtension: argv.stripExtension,
   updateIndex: argv.update
 });

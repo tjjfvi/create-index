@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
-export default (directoryPath) => {
-  const indexPath = path.resolve(directoryPath, 'index.js');
+export default (directoryPath, ext = 'js') => {
+  const indexPath = path.resolve(directoryPath, 'index.' + ext);
 
   try {
     fs.statSync(indexPath);

@@ -102,7 +102,7 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (_.startsWith(fileName, 'index.js')) {
+    if (_.startsWith(fileName, 'index')) {
       return false;
     }
 
@@ -112,7 +112,7 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (isDirectory && (!hasIndex(absolutePath) || ignoreDirectories)) {
+    if (isDirectory && (!hasIndex(absolutePath, options.ext || 'js') || ignoreDirectories)) {
       return false;
     }
 
