@@ -51,7 +51,7 @@ export default (directoryPaths, options = {}) => {
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
-    const config = readIndexConfig(directoryPath, ext);
+    const config = readIndexConfig(directoryPath, ext, JSON.parse(options.defaultConfig));
 
     const siblings = readDirectory(directoryPath, {
       config,
@@ -66,7 +66,7 @@ export default (directoryPaths, options = {}) => {
     try {
       existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');
     } catch (error) {
-      existingIndexCode = ('// @create-index ' + (options.defaultConfig || '')).trim() + '\n';
+      existingIndexCode = '';
     }
 
     const initCode = existingIndexCode.split(CREATE_INDEX_PATTERN)[0] || '';
