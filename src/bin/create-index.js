@@ -92,6 +92,7 @@ const argv = yargs
   .argv;
 
 writeIndexCli(argv._, {
+  defaultConfig: argv.defaultConfig,
   banner: argv.banner,
   extensions: argv.extensions,
   ignoreDirectories: argv.ignoreDirectories,
