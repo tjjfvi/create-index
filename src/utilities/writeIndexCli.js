@@ -51,7 +51,7 @@ export default (directoryPaths, options = {}) => {
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
-    const config = readIndexConfig(directoryPath, ext, JSON.parse(options.defaultConfig));
+    const config = readIndexConfig(directoryPath, ext, JSON.parse(options.defaultConfig || '{}'));
 
     const siblings = readDirectory(directoryPath, {
       config,
