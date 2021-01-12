@@ -16,6 +16,14 @@ const argv = yargs
     }
   })
   .options({
+    defaultConfig: {
+      alias: 'c',
+      default: '',
+      description: 'Default configuration to put after newly created @create-index comments.',
+      type: 'string'
+    }
+  })
+  .options({
     ignoreUnsafe: {
       alias: 'i',
       default: false,
