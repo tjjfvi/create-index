@@ -66,7 +66,7 @@ export default (directoryPaths, options = {}) => {
     try {
       existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');
     } catch (error) {
-      existingIndexCode = ('// @create-index ' + (options.defaultConfig || '')).trim();
+      existingIndexCode = ('// @create-index ' + (options.defaultConfig || '')).trim() + '\n';
     }
 
     const initCode = existingIndexCode.split(CREATE_INDEX_PATTERN)[0] || '';
