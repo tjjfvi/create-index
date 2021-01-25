@@ -3,9 +3,9 @@ import path from 'path';
 import hasIndex from './hasIndex';
 import {CREATE_INDEX_PATTERN} from './constants';
 
-export default (directoryPath, ext = 'js') => {
+export default (directoryPath, ext = 'js', defaultConfig) => {
   if (!hasIndex(directoryPath, ext)) {
-    return {};
+    return defaultConfig;
   }
 
   const indexPath = path.resolve(directoryPath, 'index.' + ext);
