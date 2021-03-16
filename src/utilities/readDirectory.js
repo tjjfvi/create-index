@@ -90,7 +90,7 @@ export default (directoryPath, options = {}) => {
     const absolutePath = path.resolve(directoryPath, fileName);
     const isDirectory = fs.statSync(absolutePath).isDirectory();
 
-    if (!isSafeName(fileName)) {
+    if (config.mode !== '*' && !isSafeName(fileName)) {
       return false;
     }
 
